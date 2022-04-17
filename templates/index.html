@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Tutorial Flask: Miniblog</title>
-</head>
-<body>
-    <h1>
-        {{ num_posts }} posts
-    </h1>
-</body>
-</html>
+{% extends "base_template.html" %}
+{% block title %}Tutorial Flask: Miniblog{% endblock %}
+{% block content %}
+    {{ num_posts }} posts
+{% endblock %}
