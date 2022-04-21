@@ -1,0 +1,122 @@
+#CONFIGURACIONES DE ENTORNO
+git config --global user.email
+git config --global user.name
+git config --global color.ui true
+REFERENCIA: https://git-scm.com/docs/git-config
+
+#COMANDOS DE TERMINAL
+rm -rf <name_file> --> para borrar carpetas
+
+#COMANDOS GIT
+git init <nombre_repositorio> : crea un repositorio con el nombre indicado, caso contrario, hace al directorio actual el nuevo repositorio
+rm -rf .git : borra el repositorio git
+
+git status : miramos el estado de los archivos, rojo es que no esta "tracked"
+git add <file_name> : pone al archivo en la stating area
+git add - n <file_name> : nos sirve para ver que archivos podemos agregar
+git add -A : agrega todos los archivos
+
+git rm  --cached <name_file> : para unstaged
+git rm -f <name_file> : borra definitivamente el archivo
+
+git commit -m "<Mensaje en el commit>"
+git commit -m "<Mensaje en el commit>" --amend : me permite concatenar el comit con el anterior
+
+git log : sirve para ver todos los commits
+
+git tag 0.5 : version ligera
+git tag -a 0.5 -m 'Version estable del proyecto' : version anotada
+git tag -l : lista todos los tag
+git tag 0.3 b6ac265e234ca9f762f164d592f474b25e0d457e : etiqueta un commit determinado
+git tag -d <version_a_borrar>
+git tag -f -a <n_verision> -m '<mensaje>' b6ac265e234ca9f762f164d592f474b25e0d457e: para renombrar un tag
+
+#COMANDO GIT LOG 
+git log --oneline : muestra en una linea el commit, omitiendo cierta información
+git log --oneline --graph :mira las ramas
+git log -4 : los ultimos 4 commits
+
+#VER DIFERENCIAS ENTRE commits  
+git diff <version_antigua> <Version_nueva>
+git diff ab56c70 b24a807 : se mira la diferencia entre los dos commists
+
+#VOLVER EN EL TIEMPO
+git reset --[soft, mixed, hard] <sha-#>: hay tres tipos de reset, se escoge uno
+    --soft: quita el ultimo commit, y los deja en la staging area
+    --mixed: quita el ultimo commit, y los deja en la working area
+    --hard: borra todo lo que se haya commited o en stating area (no toca los untrucked)
+            sin embargo, se pude regresar si conocemos el ultimo commit
+
+#CONFIGURAR EDITOR
+git config --global core.editor "code --wait"
+
+#RAMAS
+git branch <branch_name>
+git branch -l : lista las ramas
+git branch -d : borrar una rama
+git branch -D : forzar el borrado
+git branch -m <older_name_branch> <new_name_branch>: renombrar una rama
+
+git checkout <branch-to-move>
+git checkout <sha-to-move>: a diferencia de reset, toma ese commit y crea una rama a partir de ese commit, pero no es permanente
+git checkout -b <new-branch-name> <commit-id-sha>: crea una nueva rama a partir de un sha-commit-id
+git checkout -b <branch-to-create-and-move>: crea y se mueve a la nueva rama
+git checkout -- <name_file>: resetear el archivo a su ultimo cambio
+git checkout [HEAD|sha-commit] <filename>: recuperar un archivo borrado
+
+git merge <branch-to-merge> : fusiona los cambios que se hagan en otras ramas con la principal
+
+git rabase <branch_name> : escribe la historia de manera difrente (TENER CUIDADO)
+git rabase -i <branch_name> : hay interactividad
+
+git stash : guarda de manera parcial lo que estamos haciendo en una rama
+git stash list
+git stash drop stash@{0}
+git stash apply : aplicamos el ultimo cambio
+
+git cherry-pick <sha-commit-done-wrong-branch>: corregimos el error de commit
+
+#GITHUB__________________________________________________________________________________
+git clone <ssh_address>: clonamos un proyecto
+
+ssh-keygen -t rsa -b 4096 -C "juliancamilo07@hotmail.com" : crear una ssh
+cat ~/.ssh/id_rsa.pub
+
+*para subir los archivos a un repositorio ya creado es la conexion y por convencion se llama ORIGIN
+git remote add <name_remote_repo[origin]> <ssh_repository>
+git remote remove <name_remote_repo>
+
+git remote -v: consulta el nombre del repositorio remoto
+
+
+git fetch <name_remote_repo> <what-branch-to-bring> ej: git fetch origin master : trae los archivos del
+                                            repo remoto estos archivo los une en otra rama 
+                                            <name_remote_repo>/master
+                                            para unirlos toca hacer
+                                            git merge <name_remote_repo>/master --allow-unrelated-histories
+git merge <name_remote_repo>/master --allow-unrelated-histories
+
+git pull <name_remote_repo> <what-branch-to-bring>
+
+git push <name_remote_repo> <branch_to_send> : sube los archivos o cambios al upstream repo y podemos
+                                                especificar la rama que queremos enviar
+git push <name_remote_repo> <branch-used> --tags
+
+git push <name-of-remote-repository> --delete <branch-name> : elimina la rama en el repositorio remoto
+
+touch .gitignore : para ignorar los archivos que no queremos que sean subidos al uptrame repo
+
+#______________________vscode
+A - Added (This is a new file that has been added to the repository)
+
+M - Modified (An existing file has been changed)
+
+D - Deleted (a file has been deleted)
+
+U - Untracked (The file is new or has been changed but has not been added to the repository yet)
+
+C - Conflict (There is a conflict in the file)
+
+R - Renamed (The file has been renamed)
+
+S - Submodule (In repository exists another subrepository)
