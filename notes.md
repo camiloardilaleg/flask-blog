@@ -16,10 +16,24 @@ Comando para inicializar la base de datos. Postgres por defecto crea el usuario 
 sudo -u postgres psql
 ```
 
+Comando para instalar un asistente de manejo de las bases de datos de PostgreSQL
+
+```
+sudo apt-get install pgadmin3
+```
+
 ## Listar las bases de datos
 
 ```
 \l
+```
+
+## Crear base de datos
+
+La forma mas simple de hacerlo es:
+
+```
+CREATE TABLE <table-name>
 ```
 
 ## Password
@@ -46,3 +60,20 @@ This library create an _Unique_ slug, which will be usefull to reatrive post lat
 ```
 pip install python-slugify
 ```
+
+# Creando todas las tablas
+
+Para crear todas las tablas con el asistente de SqlAlchemy, es necesesario crear una base de datos directamente desde postgress. Una vez creada la base de datos, se abre un interprete de python desde la terminal
+
+```bash
+python
+```
+
+Una vez en el interprete realizamos el siguiente codigo:
+
+```python
+from run import db
+db.create_all()
+```
+
+Y asi se conseguiran crear todas las tablas en cuestion.
