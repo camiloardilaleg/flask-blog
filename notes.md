@@ -77,3 +77,7 @@ db.create_all()
 ```
 
 Y asi se conseguiran crear todas las tablas en cuestion.
+
+References 
+
+1. [Link del tutorial](https://j2logo.com/tutorial-flask-espanol/)
