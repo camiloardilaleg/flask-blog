@@ -72,7 +72,7 @@ python
 Una vez en el interprete realizamos el siguiente codigo:
 
 ```python
-from run import db
+from app import db
 db.create_all()
 ```
 
@@ -81,3 +81,29 @@ Y asi se conseguiran crear todas las tablas en cuestion.
 References 
 
 1. [Link del tutorial](https://j2logo.com/tutorial-flask-espanol/)
+
+# Creando carpetas
+
+El siguiente comando crea todas los archivos, incluyendo el directorio `config/`, de configuracion.
+
+En la carpeta de configuracion estan, valga la redundancia, los archivos que se utilizaran en cada escenario al momento de comenzar a desarrollar, testear o mandar a produccion.
+
+*IMPORTANTE:* las carpetas deben estar al **mismo nivel** de `app`
+
+``` bash
+cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+mkdir config
+cd config
+touch  default.py local.py dev.py prod.py staging.py testing.py
+cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+```
+
+Ahora la configuracion de `instance/`, en donde se guardan las configuraciones que necesitamos para arrancar el proyecto en *entorno local* y que por tanto, dicha informacion no queremos que se filtre o que otras personas las conozcan.
+
+```
+cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog/
+mkdir instance
+cd instance
+touch config.py config-testing.py
+cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+```
