@@ -46,6 +46,11 @@ git reset --[soft, mixed, hard] <sha-#>: hay tres tipos de reset, se escoge uno
     --mixed: quita el ultimo commit, y los deja en la working area
     --hard: borra todo lo que se haya commited o en stating area (no toca los untrucked)
             sin embargo, se pude regresar si conocemos el ultimo commit
+    #Nota, con el anterior comando el <sha> que le pasemos, va a causar que los cambios que se den sea a partir de ese sha.
+    es decir, si tengo varios commit, entonces si yo coloco el sha ultimo (de arriba para abajo), entonces
+    no va a pasar nada de nada.
+    El sha que necesitamos escoger es el penultimo (de arriba para abajo) para que se deshaga el ultimo sha
+
 
 #CONFIGURAR EDITOR
 git config --global core.editor "code --wait"
