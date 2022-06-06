@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 login_manager = LoginManager()
@@ -29,8 +29,21 @@ def create_app(settings_module):
     app.register_blueprint(admin_bp)
     from .public import public_bp
     app.register_blueprint(public_bp)
-    
+
+    #Custom error handlers
+    register_error_handlers(app)
+      
     return app
+
+def register_error_handlers(app):
+    
+    @app.errorhandler(404)
+    def error_404_handler(error):
+        return render_template('404.html'), 404 # <-- Retorna una tupla con el template y el STATUS CODE
+    
+    @app.errorhandler(500)
+    def error_500_handler(error):
+        return render_template('500.html'), 500
 
 
 """

@@ -82,7 +82,7 @@ References
 
 1. [Link del tutorial](https://j2logo.com/tutorial-flask-espanol/)
 
-# Creando carpetas
+# Creando carpetas y archivos
 
 El siguiente comando crea todas los archivos, incluyendo el directorio `config/`, de configuracion.
 
@@ -106,4 +106,15 @@ mkdir instance
 cd instance
 touch config.py config-testing.py
 cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+```
+
+Creamos ahora los `templtes` para renderizar los errores de manera personalizada
+
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/templates/404.html app/templates/500.html
+ echo "abrimos los archivos"
+ code app/templates/404.html app/templates/500.html
+ echo "cambiamos de nuevo al directorio raiz del proyecto"
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
 ```
