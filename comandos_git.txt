@@ -25,7 +25,7 @@ git commit -m "<Mensaje en el commit>" --amend : me permite concatenar el comit 
 git log : sirve para ver todos los commits
 
 git tag 0.5 : version ligera
-git tag -a 0.5 -m 'Version estable del proyecto' : version anotada
+git tag -a 0.5 -m 'Version estable del proyecto' : version anotada (es la version larga)
 git tag -l : lista todos los tag
 git tag 0.3 b6ac265e234ca9f762f164d592f474b25e0d457e : etiqueta un commit determinado
 git tag -d <version_a_borrar>
@@ -50,7 +50,7 @@ git reset --[soft, mixed, hard] <sha-#>: hay tres tipos de reset, se escoge uno
     es decir, si tengo varios commit, entonces si yo coloco el sha ultimo (de arriba para abajo), entonces
     no va a pasar nada de nada.
     El sha que necesitamos escoger es el penultimo (de arriba para abajo) para que se deshaga el ultimo sha
-
+git reset HEAD -- <file-to-be-unstaged>: sirve para hacer la operacion contraria de `git add`
 
 #CONFIGURAR EDITOR
 git config --global core.editor "code --wait"
