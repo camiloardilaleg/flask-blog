@@ -22,7 +22,14 @@ git rm -f <name_file> : borra definitivamente el archivo
 git commit -m "<Mensaje en el commit>"
 git commit -m "<Mensaje en el commit>" --amend : me permite concatenar el comit con el anterior
 
-git log : sirve para ver todos los commits
+git log : sirve para ver todos los commits, pero solo aquellos que son <= HEAD
+git log --oneline : simplifica la vista de los logs
+git log --all --oneline : permite ver TODOS los logs del proyectos
+
+
+# Git tag: 
+Hay que tener en cuenta que cuando utilizamos el tag, sin localizar un sha-commit especifico, nos estamos 
+refiriendo a HEAD. El cual es el estado en donde nos encontremos actualmente (git log --oneline)
 
 git tag 0.5 : version ligera
 git tag -a 0.5 -m 'Version estable del proyecto' : version anotada (es la version larga)
@@ -30,6 +37,7 @@ git tag -l : lista todos los tag
 git tag 0.3 b6ac265e234ca9f762f164d592f474b25e0d457e : etiqueta un commit determinado
 git tag -d <version_a_borrar>
 git tag -f -a <n_verision> -m '<mensaje>' b6ac265e234ca9f762f164d592f474b25e0d457e: para renombrar un tag
+git tag -a <n_verision> -m '<mensaje>' b6ac265e234ca9f762f164d592f474b25e0d457e: taggerar un sha normal
 
 #COMANDO GIT LOG 
 git log --oneline : muestra en una linea el commit, omitiendo cierta información
@@ -99,6 +107,8 @@ git fetch <name_remote_repo> <what-branch-to-bring> ej: git fetch origin master 
                                             <name_remote_repo>/master
                                             para unirlos toca hacer
                                             git merge <name_remote_repo>/master --allow-unrelated-histories
+git diff --diff-filter=A --name-only main origin/main #ver las diferencias entre el remoto y local
+
 git merge <name_remote_repo>/master --allow-unrelated-histories
 
 git pull <name_remote_repo> <what-branch-to-bring>

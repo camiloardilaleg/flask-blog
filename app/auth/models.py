@@ -9,7 +9,7 @@ from sqlalchemy.exc import IntegrityError
 
 class User(db.Model, UserMixin):
 
-    __tablename__ = 'blog_user' # <- es una palagra resevada de PosgrestSQL. Le da el nombre a la tabla
+    __tablename__ = 'blog_user' # <- es una palabra resevada de PosgrestSQL. Le da el nombre a la tabla
 
     id = db.Column(db.Integer, primary_key=True) # <- Con .Column, se define los campos de la DB.
     name = db.Column(db.String(80), nullable=False)

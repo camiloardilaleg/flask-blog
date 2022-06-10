@@ -24,8 +24,26 @@ sudo apt-get install pgadmin3
 
 ## Listar las bases de datos
 
-```
+```bash
 \l
+```
+
+## Cambiar base de datos
+
+```bash
+\c miniblog
+```
+
+## Show tables
+
+```bash
+\dt
+```
+
+## Ingresar admin user
+
+```bash
+INSERT INTO blog_user(name, email, password, is_admin) VALUES ('ADMIN', 'admin@xyz.com', 'pbkdf2:sha256:150000$5oClIM0i$c155be080802a2299bf20f891ea9e542c8fb11ea4a5927d390c36d2d91252a60', TRUE);
 ```
 
 ## Crear base de datos
@@ -50,6 +68,10 @@ alter user postgres with password <password>
 ## Slug: What is a Slug?
 
 A slug is the last part of the url containing a unique string which identifies the resource being served by the web service. In that sense, a slug is a unique identifier for the resource.
+
+## @staticmethod
+
+Este decorador permite que los metodos que definamos en la clase los podamos usar sin necesidad de instanciar la clase.
 
 # Librerias
 
@@ -108,7 +130,7 @@ touch config.py config-testing.py
 cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
 ```
 
-Creamos ahora los `templtes` para renderizar los errores de manera personalizada
+Creamos ahora los `templates` para renderizar los errores de manera personalizada
 
 ```bash
  cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
@@ -117,4 +139,30 @@ Creamos ahora los `templtes` para renderizar los errores de manera personalizada
  code app/templates/404.html app/templates/500.html
  echo "cambiamos de nuevo al directorio raiz del proyecto"
  cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+```
+
+Creamos el archivo de decoradores
+
+```bash
+cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+touch app/auth/decorators.py
+echo "abrimos el archivo"
+code app/auth/decorators.py
+```
+
+y anado el siguiente codigo:
+
+```python
+from functools import wraps
+from flask import abort
+from flask_login import current_user
+
+def admin_requires(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        is_admin = getattr(current_user, 'is_admin', False)
+        if not is_admin:
+            abort(401)
+        return func(*args, **kwargs)
+    return wrapper
 ```

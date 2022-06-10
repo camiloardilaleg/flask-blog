@@ -5,13 +5,15 @@ from app.models import Post
 from . import admin_bp
 from .forms import PostForm
 
+from app.auth.decorators import admin_required
 
 @admin_bp.route("/admin/post/", methods=['GET', 'POST'], defaults={'post_id': None})
 @admin_bp.route("/admin/post/<int:post_id>/", methods=['GET', 'POST'])
-@login_required
+@admin_required # Only admin can access this route
+@login_required # Only logged users can access this route
 def post_form(post_id):
     form = PostForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit(): # only when form is submitted by Post method
         title = form.title.data
         content = form.content.data
 
