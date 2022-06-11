@@ -8,6 +8,9 @@ class PostForm(FlaskForm):
     content = TextAreaField('Contenido')
     submit = SubmitField('Enviar')
 
+class UserAdminForm(FlaskForm):
+    is_admin = BooleanField('Administrador')
+    submit = SubmitField('Guardar')
 
 """
 Las clases que heredan de FlaskForm, permiten crear objetos que van a tener los atributos que nosotros necesitamos 

@@ -183,3 +183,27 @@ Creamos la plantilla que listará todos los posts
  echo "abrimos el archivo"
  code app/admin/templates/admin/posts.html
 ```
+
+Creamos la plantilla que listara todos los usuarios
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/admin/templates/admin/users.html
+ echo "abrimos el archivo"
+ code app/admin/templates/admin/users.html
+```
+
+creamos la plantilla para mostrar o actualizar un usuario
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/admin/templates/admin/user_form.html
+ echo "abrimos el archivo"
+ code app/admin/templates/admin/user_form.html
+```
+
+creamos la pagina principal de admin
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/admin/templates/admin/index.html
+ echo "abrimos el archivo"
+ code app/admin/templates/admin/index.html
+```
