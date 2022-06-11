@@ -123,11 +123,11 @@ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
 Ahora la configuracion de `instance/`, en donde se guardan las configuraciones que necesitamos para arrancar el proyecto en *entorno local* y que por tanto, dicha informacion no queremos que se filtre o que otras personas las conozcan.
 
 ```
-cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog/
-mkdir instance
-cd instance
-touch config.py config-testing.py
-cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog/
+ mkdir instance
+ cd instance
+ touch config.py config-testing.py
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
 ```
 
 Creamos ahora los `templates` para renderizar los errores de manera personalizada
@@ -144,10 +144,10 @@ Creamos ahora los `templates` para renderizar los errores de manera personalizad
 Creamos el archivo de decoradores
 
 ```bash
-cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
-touch app/auth/decorators.py
-echo "abrimos el archivo"
-code app/auth/decorators.py
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/auth/decorators.py
+ echo "abrimos el archivo"
+ code app/auth/decorators.py
 ```
 
 y anado el siguiente codigo:
@@ -165,4 +165,21 @@ def admin_requires(func):
             abort(401)
         return func(*args, **kwargs)
     return wrapper
+```
+
+Creamos pagina de error personalizada para el error **401**
+
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/templates/401.html
+ echo "abrimos el archivo"
+ code app/templates/401.html
+```
+
+Creamos la plantilla que listará todos los posts
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ touch app/admin/templates/admin/posts.html
+ echo "abrimos el archivo"
+ code app/admin/templates/admin/posts.html
 ```

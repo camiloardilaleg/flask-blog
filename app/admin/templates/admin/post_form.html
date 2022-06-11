@@ -35,9 +35,11 @@
         <div>
             {{ form.submit() }}
         </div>
-        {% if post_id %}
-            <h1>Estamos en el post {{ post_id }}</h1>
-        {% endif %}
-
     </form>
+    <!-- Create new form to delete a post -->
+    {% if post %}
+    <form action="{{ url_for('admin.delete_post', post_id=post.id) }}" method="post" novalidate>
+        <input type="submit" value="Eliminar" />
+    </form>
+    {% endif %}
 {% endblock %}
