@@ -249,3 +249,20 @@ creamos nuevo formulario para comentarios de invitados
  touch app/public/forms.py
  code app/public/forms.py
 ```
+
+# Testing
+
+Primero que hacemos es crear una paquete llamado `tests`
+
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ mkdir tests
+ cd tests
+ echo "Creo el archivo para inicializar el paquete"
+ touch __init__.py
+ code __init__.py
+ touch test_blog_client.py
+ echo "abro el archivo"
+ code test_blog_client.py
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+```

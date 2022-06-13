@@ -18,7 +18,7 @@ def create_app(settings_module):
     # config file
     app.config.from_object(settings_module)
 
-    if app.config.get('TESTING', False):
+    if app.config.get('TESTING', False): # si en el archivo de configuracion esta TESTING es True
         app.config.from_pyfile('config_tesing.py', silent=True)
     else:
         app.config.from_pyfile('config.py', silent=True)
