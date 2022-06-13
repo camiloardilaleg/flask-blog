@@ -118,6 +118,7 @@ git push <name_remote_repo> <branch_to_send> : sube los archivos o cambios al up
 git push <name_remote_repo> <branch-used> --tags
 
 git push <name-of-remote-repository> --delete <branch-name> : elimina la rama en el repositorio remoto
+git push --tags : envia todos los tagas a "origin main"
 
 touch .gitignore : para ignorar los archivos que no queremos que sean subidos al uptrame repo
 

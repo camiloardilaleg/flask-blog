@@ -1,3 +1,4 @@
+alembic==1.8.0
 apt-clone==0.2.1
 apturl==0.5.2
 beautifulsoup4==4.8.2
@@ -21,6 +22,7 @@ entrypoints==0.3
 filelock==3.4.2
 Flask==2.1.2
 Flask-Login==0.6.1
+Flask-Migrate==3.1.0
 Flask-SQLAlchemy==2.5.1
 Flask-WTF==1.0.1
 greenlet==1.1.2
@@ -30,6 +32,7 @@ idna==2.8
 ifaddr==0.1.6
 IMDbPY==6.8
 importlib-metadata==4.11.4
+importlib-resources==5.7.1
 iotop==0.6
 itsdangerous==2.1.2
 Jinja2==3.1.2

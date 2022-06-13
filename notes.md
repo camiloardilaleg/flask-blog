@@ -45,6 +45,22 @@ sudo apt-get install pgadmin3
 ```bash
 INSERT INTO blog_user(name, email, password, is_admin) VALUES ('ADMIN', 'admin@xyz.com', 'pbkdf2:sha256:150000$5oClIM0i$c155be080802a2299bf20f891ea9e542c8fb11ea4a5927d390c36d2d91252a60', TRUE);
 ```
+## Crear un nuevo campo en la tabla posts
+```bash
+# ALTER TABLE posts ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+Alter table post add column created TIMESTAMP;
+```
+
+## Eliminar una base datos por completo
+```bash
+DROP DATABASE miniblog;
+```
+
+## Crea una base de datos
+```bash
+CREATE DATABASE miniblog;
+```
+
 
 ## Crear base de datos
 
@@ -82,6 +98,26 @@ This library create an _Unique_ slug, which will be usefull to reatrive post lat
 ```
 pip install python-slugify
 ```
+## Flask-migrate
+
+Esta libreria sirve para reconocer los cambios hechos en los modelos de las bases de datos y, asi mismo realizar estas migraciones.
+
+La liberia cuenta con funciones que se ejecutan por *linea de comandos* para realizar las diferentes acciones que deseamos cometer. Entre los diferentes comandos tenemos:
+
+```bash
+flask db init
+flask db migrate [-m <message>]
+flask db upgrade
+```
+
+El primero inicia todo el proyecto, es lo mismo que teniamos con el comando `db.create_all()` de SQLAlchemy.
+El segundo se encarga de encontrar las modificaciones y crear un nuevo directorio `migrations/` que contendra las migraciones.
+Y el tercer es el encargado de ejecutar las migraciones.
+
+Un comando adicional es `flask db migrate -m "Initial database"`, el cual:
+>Lo que hace este comando es generar un nuevo fichero con código python que incluye todos los cambios que hay seguir para actualizar la base de datos. Es un fichero de migración y se guarda en el directorio migrations/versions
+
+El anterior comando debe usarse antes de usar `flask db upgrade`
 
 # Creando todas las tablas
 
@@ -206,4 +242,10 @@ creamos la pagina principal de admin
  touch app/admin/templates/admin/index.html
  echo "abrimos el archivo"
  code app/admin/templates/admin/index.html
+```
+
+creamos nuevo formulario para comentarios de invitados
+```bash
+ touch app/public/forms.py
+ code app/public/forms.py
 ```
