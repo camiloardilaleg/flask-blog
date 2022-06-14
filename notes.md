@@ -266,3 +266,11 @@ Primero que hacemos es crear una paquete llamado `tests`
  code test_blog_client.py
  cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
 ```
+
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog/
+ cd test
+ touch test_post_model.py && code test_post_model.py
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog/
+```
+
