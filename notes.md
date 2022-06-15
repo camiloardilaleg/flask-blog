@@ -252,6 +252,10 @@ creamos nuevo formulario para comentarios de invitados
 
 # Testing
 
+El testing, como su nombre lo indica, es una herramienta o una metodologia que nos permite asegurarnos de que nuestro codigo funciona correctamente, sin la necesidad de que un operario exterio testee la pagina manualmente.
+
+**Una ventaja de los test o testing es que, cada vez que modifiquemos el codigo, chequeemos que no hemos dañado nada de nada.**
+
 Primero que hacemos es crear una paquete llamado `tests`
 
 ```bash

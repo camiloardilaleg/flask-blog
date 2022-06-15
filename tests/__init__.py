@@ -34,3 +34,9 @@ class BaseTestClass(unittest.TestCase):
         user.is_admin = is_admin
         user.save()
         return user
+
+    def login(self, email, password):
+        return self.client.post('/login', data=dict(
+            email=email,
+            password=password
+        ), follow_redirects=True)
