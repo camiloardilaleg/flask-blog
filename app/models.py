@@ -60,6 +60,11 @@ class Post(db.Model):
     def get_all():
         return Post.query.all()
 
+    @staticmethod
+    def all_paginated(page=1, per_page=20):
+        return Post.query.order_by(Post.created.asc()).\
+            paginate(page=page, per_page=per_page, error_out=False)
+
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -91,3 +96,5 @@ class Comment(db.Model):
     @staticmethod
     def get_by_post_id(post_id):
         return Comment.query.filter_by(post_id=post_id).all()
+
+

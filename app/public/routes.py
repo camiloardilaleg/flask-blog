@@ -16,8 +16,10 @@ def index():
     # the logger is defined in the app.__init__.py
     current_app.logger.info("Showing post's blog")
     logger.info('Mostrando los post del log')
-    posts = Post.get_all()
-    return render_template("public/index.html", posts=posts)
+    # posts = Post.get_all()
+    posts = Post.all_paginated(1, 3) # si no tengo mas de tres no muestra nada
+    print(f'Estos son los post {posts}, {posts.items}')
+    return render_template("public/index.html", posts=posts.items)
 
 
 @public_bp.route("/p/<string:slug>/", methods=["GET", "POST"])

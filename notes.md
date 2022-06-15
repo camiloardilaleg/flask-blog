@@ -278,3 +278,7 @@ Primero que hacemos es crear una paquete llamado `tests`
  cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog/
 ```
 
+## Paginacion o pagination
+
+Se usa cuando el resultado de una consulta es muy grande y no queremos que se muestre todo en una sola pagina. Ademas, de lo costoso computacionalmente que implica dicho proceso. Por tal motivo, se usa la paginacion.
+
