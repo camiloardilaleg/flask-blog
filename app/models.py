@@ -35,6 +35,8 @@ class Post(db.Model):
                 db.session.commit()
                 saved = True
             except IntegrityError:
+                db.session.rollback() # Fix slug repeated when same title for two posts
+                db.session.add(self)
                 count += 1
                 self.title_slug = f'{slugify(self.title)}-{count}'
 
