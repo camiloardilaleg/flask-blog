@@ -1,5 +1,5 @@
 from crypt import methods
-from flask import abort, redirect, render_template, current_app, redirect, url_for
+from flask import abort, redirect, render_template, current_app, redirect, request, url_for
 from app.models import Post, Comment
 from . import public_bp
 
@@ -16,10 +16,10 @@ def index():
     # the logger is defined in the app.__init__.py
     current_app.logger.info("Showing post's blog")
     logger.info('Mostrando los post del log')
-    # posts = Post.get_all()
-    posts = Post.all_paginated(1, 3) # si no tengo mas de tres no muestra nada
-    print(f'Estos son los post {posts}, {posts.items}')
-    return render_template("public/index.html", posts=posts.items)
+    page = int(request.args.get('page', 1)) # Obtenemos el numero de pagina que el usuario desea
+    items_per_page = current_app.config['ITEMS_PER_PAGE'] # Obtenemos el numero de items por pagina desde variables de la app
+    post_pagination = Post.all_paginated(page, items_per_page) # si no tengo mas de tres no muestra nada
+    return render_template("public/index.html", post_pagination=post_pagination)
 
 
 @public_bp.route("/p/<string:slug>/", methods=["GET", "POST"])
