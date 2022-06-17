@@ -4,9 +4,11 @@
 
 {% block content %}
 <h1>{{ post.title }}</h1>
+<div><span class="blogDate">{{post.created|datetime('full')}}</span></div>
 {{ post.content }}
 
 <h2>Comentarios</h2>
+<!-- Only authenticated user can post new comments -->
 {% if current_user.is_authenticated %}
 <div>
     <form action="" method="post" novalidate>
@@ -24,11 +26,12 @@
     </form>
 </div>
 {% endif %}
+<!-- Display all comments -->
 <div id="comments">
     <p>La comunidad ha escrito los siguientes comentarios</p>
     {% for comment in post.comments %}
     <div>
-        <div>El usuario {{ comment.user_name }} comentó:</div>
+        <div>El usuario {{ comment.user_name }} comentó el <span class="blogDate">{{ comment.created|datetime('full')}}</span>:</div>
         <div>{{ comment.content }}</div>
     </div>
     {% endfor %}

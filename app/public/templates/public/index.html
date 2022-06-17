@@ -7,7 +7,7 @@
             <a href="{{ url_for('public.show_post', slug=post.title_slug) }}">
                 {{ post.title }}
                 <span class="{{ post.created}}">
-                    ({{ post.created.strftime('%d-%m-%Y') }})
+                    ({{ post.created|datetime }})
                 </span>
             </a>
         </li>
