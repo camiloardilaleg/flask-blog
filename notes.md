@@ -282,3 +282,91 @@ Primero que hacemos es crear una paquete llamado `tests`
 
 Se usa cuando el resultado de una consulta es muy grande y no queremos que se muestre todo en una sola pagina. Ademas, de lo costoso computacionalmente que implica dicho proceso. Por tal motivo, se usa la paginacion.
 
+
+
+# Enviar mails y servidores SMTP
+
+> Como te decía, para que el objeto Mail pueda enviar mensajes necesita conectarse a un servidor smtp de nuestra propiedad. Para ello, definiremos los siguientes parámetros de configuración en el fichero config/default.py
+
+
+## Enviar emails de forma asincrona
+
+Creamos un nuevo directorio llamado `common`
+
+```bash
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+ mkdir app/common
+ cd app/common
+ touch __init__.py
+ touch mail.py
+ code mail.py
+ cd /home/camiloardilaleg/Desktop/cursos_online/pythonProject/miniblog
+```
+
+# Crear un servidor SMTP
+
+Una manera facil de crear un SMTP es utilizar la libreria `postfix` el cual, con ayuda de un proveedor como gmail permite enviar nuestros emails.
+
+Para dicho cometido se realiza lo siguiente
+
+1. modificamos en el fichero `/etc/hostname` el nombre del servidor a, por ejemplo, `camilo.mail.com`
+2. modificamos el fichero `/etc/hosts` y en la linea `127.0.1.1` cambiamos el nombre del servidor a `camilo.mail.com`. asi quedaria
+> 127.0.1.1	camilo.mail.com
+3. Instalo postfix `apt-get install libsasl2-modules postfix`
+4. En el archivo `/etc/postfix/main.cf` cambiamos el nombre del servidor a `camilo.mail.com`. 
+quedando de la siguiente manera `myhostname = camilo.mail.com`
+5. En google tenemos que generar una contrasena para el servidor smtp.
+6. Creamos un arhivo en `/etc/postfix/sasl/sasl_passwd` con el siguiente contenido
+>[smtp.gmail.com]:587 camiloardila.publicdiles@gmail.com:<passwd-generado-por-gmail>
+7. Encriptamos el archivo y lo colocamos en la base de datos de postfix. Ejecutamos el siguiente comando
+`postmap /etc/postfix/sasl/sasl_passwd`
+Lo anterior crea un nuevo archivo `sasl_passwd.db`, quedando asi en la carpeta: `/etc/postfix/sasl/sasl_passwd.db`
+8. Quitamos prvivilegios al archivo `sasl_passwd` para evitar que las personas que no sean administradores puedan modificarlo o leerlo.
+`chown root:root /etc/postfix/sasl/sasl_passwd /etc/postfix/sasl/sasl_passwd` y 
+`chmod 0600 /etc/postfix/sasl/sasl_passwd /etc/postfix/sasl/sasl_passwd`
+9. En el archivo `/etc/postfix/main.cf' cambiamos la linea `relayhost =` por `relayhost = [smtp.gmail.com]:587`
+
+y al final del mismo archivo anadimos lo siguiente
+
+```
+# Enable SASL authentication
+smtp_sasl_auth_enable = yes
+# Disallow methods that allow anonymous authentication
+smtp_sasl_security_options = noanonymous
+# Location of sasl_passwd
+smtp_sasl_password_maps = hash:/etc/postfix/sasl/sasl_passwd
+# Enable STARTTLS encryption
+smtp_tls_security_level = encrypt
+# Location of CA certificates
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+```
+10. Reiniciamos el servicio postfix
+Reiniciamos el servicio postfix con el siguiente comando:
+`service postfix restart`
+
+Para enviar correos se procede de la siguiente manera
+```
+sendmail example@gmail.com
+From: root@gmail.com
+Subject: Test mail
+Testing Email
+.
+```
+
+Se puede apreciar que se termina con un punto al final.
+
+## Utilizar el servidor SMTP con flask
+
+En el archivo config ponemos la siguiente configuracion
+
+```
+# Configuración del email
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 587
+MAIL_USERNAME = 'camiloardila.publicfiles@gmail.com'
+MAIL_PASSWORD = 'vfwkhwxenmyscmde'
+DONT_REPLY_FROM_EMAIL = '(julian, camiloardila.publicfiles@gmail.com)'
+ADMINS = ('camiloardila.publicfiles@gmail.com', )
+MAIL_USE_TLS = True
+MAIL_DEBUG = False
+```
