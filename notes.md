@@ -250,6 +250,10 @@ creamos nuevo formulario para comentarios de invitados
  code app/public/forms.py
 ```
 
+```
+touch app/common/filters.py
+
+
 # Testing
 
 El testing, como su nombre lo indica, es una herramienta o una metodologia que nos permite asegurarnos de que nuestro codigo funciona correctamente, sin la necesidad de que un operario exterio testee la pagina manualmente.
@@ -370,3 +374,7 @@ ADMINS = ('camiloardila.publicfiles@gmail.com', )
 MAIL_USE_TLS = True
 MAIL_DEBUG = False
 ```
+
+# Filters
+
+Los filtros son funciones que permiten modificar el comportamiento al momento de renderizar informacion en las hojas de `jinja`

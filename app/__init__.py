@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 login_manager = LoginManager()
 from flask_migrate import Migrate
 from flask_mail import Mail
+from app.common.filters import format_datetime
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -33,6 +34,9 @@ def create_app(settings_module):
     db.init_app(app)
     migrate.init_app(app, db) # <-- Inicializa el manejador de migraciones
     mail.init_app(app)
+
+    # Register filters
+    register_filters(app)
     
     # Registro de los Blueprints
     from .auth import auth_bp
@@ -46,6 +50,10 @@ def create_app(settings_module):
     register_error_handlers(app)
       
     return app
+
+def register_filters(app):
+    """Registra el filtro personalizado"""
+    app.jinja_env.filters['datetime'] = format_datetime
 
 def register_error_handlers(app):
     
@@ -61,8 +69,6 @@ def register_error_handlers(app):
     def error_500_handler(error):
         return render_template('500.html'), 500
         
-
-
 def configure_logging(app):
     
     # Eliminamos los posibles manejadores, si existen, del logger por defecto
