@@ -16,6 +16,7 @@ def index():
     # the logger is defined in the app.__init__.py
     current_app.logger.info("Showing post's blog")
     logger.info('Mostrando los post del log')
+    
     page = int(request.args.get('page', 1)) # Obtenemos el numero de pagina que el usuario desea
     items_per_page = current_app.config['ITEMS_PER_PAGE'] # Obtenemos el numero de items por pagina desde variables de la app
     post_pagination = Post.all_paginated(page, items_per_page) # si no tengo mas de tres no muestra nada

@@ -119,6 +119,16 @@ Un comando adicional es `flask db migrate -m "Initial database"`, el cual:
 
 El anterior comando debe usarse antes de usar `flask db upgrade`
 
+## os
+
+`os.makedirs(path)`: esta funcion crea recursivamente todos los directorios y subdirectorios necesarios para llegar al directorio final que queramos. Por ejemplo, supondamos que tenemos el siguiente codigo 
+
+```python
+os.makedirs("/home/user/miniblog/static/img/uploads")
+```
+
+Y digamos que el directorio static y img no estan creados; entonces el comando los creara para poder asi crear el directorio uploads.
+
 # Creando todas las tablas
 
 Para crear todas las tablas con el asistente de SqlAlchemy, es necesesario crear una base de datos directamente desde postgress. Una vez creada la base de datos, se abre un interprete de python desde la terminal
@@ -378,3 +388,7 @@ MAIL_DEBUG = False
 # Filters
 
 Los filtros son funciones que permiten modificar el comportamiento al momento de renderizar informacion en las hojas de `jinja`
+
+# Subir ficheros: por ejemplo, imagenes
+
+Una buena practica es subir los archivos dentro del *sistema de ficheros* de la aplicacion, y la direccion de donde estos se encuentran en la base de datos.
