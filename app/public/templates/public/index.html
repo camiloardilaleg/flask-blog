@@ -21,7 +21,9 @@
         {% for page in post_pagination.iter_pages() %}
             {% if page %}
                 {% if page != post_pagination.page  %}
-                    <a href="{{ url_for('public.index', page=page) }}"></a>
+                    <a href="{{ url_for('public.index', page=page) }}">
+                        {{ page }}
+                    </a>
                 {% else %}
                     <strong>{{ page }}</strong>
                 {% endif %}

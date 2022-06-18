@@ -1,14 +1,18 @@
 from crypt import methods
+from email.mime import image
 import logging
 
 from app.auth.decorators import admin_required
 from app.auth.models import User
 from app.models import Post
-from flask import abort, redirect, render_template, url_for
+from flask import abort, redirect, render_template, request, url_for, current_app
 from flask_login import current_user, login_required
 
 from . import admin_bp
 from .forms import PostForm, UserAdminForm
+
+from werkzeug.utils import secure_filename
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -28,8 +32,19 @@ def post_form(post_id):
     if form.validate_on_submit(): # only when form is submitted by Post method
         title = form.title.data
         content = form.content.data
+        file = form.post_image.data
+        image_name = None
+
+        # Check if file is in request
+        if file:
+            image_name = secure_filename(file.filename)
+            images_dir = current_app.config['POSTS_IMAGES_DIR']
+            os.makedirs(images_dir, exist_ok=True)
+            file_path = os.path.join(images_dir, image_name)
+            file.save(file_path)
 
         post = Post(user_id=current_user.id, title=title, content=content)
+        post.image_name = image_name
         post.save()
 
         logger.info(f'Saving a new post: {title}')
