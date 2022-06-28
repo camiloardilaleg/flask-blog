@@ -392,3 +392,9 @@ Los filtros son funciones que permiten modificar el comportamiento al momento de
 # Subir ficheros: por ejemplo, imagenes
 
 Una buena practica es subir los archivos dentro del *sistema de ficheros* de la aplicacion, y la direccion de donde estos se encuentran en la base de datos.
+
+# Despliegue de la aplicacion
+
+Servidores web y servidores de aplicaciones
+
+ Elastic Container Service (ECS) VS Kubernetes
